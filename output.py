@@ -1,17 +1,17 @@
 
-def create_output_file(fname, deliveries):
+def create_output_file(filepath, deliveries):
     """
     Args:
         deliveries: a list of tuples: (number of people, list of pizza ids)
     """
     num_pizzas = len(deliveries)
 
-    output_lines = [str(len)]
+    output_lines = [str(num_pizzas) + "\n"]
     for num_people, pizzas in deliveries:
-        line = str(num_people) + " " + " ".join(list(map(str, pizzas)))
+        line = str(num_people) + " " + " ".join(list(map(str, pizzas))) + "\n"
         output_lines.append(line)
     
-    with open(f"outputs/{fname}.txt", "w") as fwrite:
+    with open(f"{filepath}", "w") as fwrite:
         fwrite.writelines(output_lines)
 
 
@@ -20,7 +20,7 @@ def test():
         (2, [1, 4]),
         (3, [0, 2, 3]),
     ]
-    create_output_file("sample", deliveries)
+    create_output_file("outputs/sample.txt", deliveries)
 
 
 if __name__ == "__main__":

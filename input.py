@@ -21,7 +21,8 @@ def read_input(filepath):
 
 
 
+
 if __name__ == "__main__":
-    filename = "a_example"
+    filename = "inputs/a_example"
 
     print(read_input(filename))
