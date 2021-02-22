@@ -27,3 +27,24 @@ def get_distance(nr_dict, pizzas, metric='cityblock'):
     out = cdist(encoding, encoding, metric=metric)
 
     return out
+
+from itertools import chain
+
+def get_encoding(pizzas):
+
+    nr_ings, ings_list = zip(*pizzas)
+
+
+    ings_unique = list(set(chain.from_iterable(ings_list)))
+    ings_ids = range(len(ings_unique))
+
+    ings_map = dict(zip(ings_unique, ings_ids))
+
+    encoding = np.zeros((len(pizzas), len(ings_unique)), dtype=np.bool)
+    for i, ings in enumerate(ings_list):
+        indices = list(map(lambda ing: ings_map[ing], ings))
+        encoding[i, indices] = len(indices) * [1]
+
+    print('encoding success')
+
+    return encoding
