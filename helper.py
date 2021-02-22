@@ -48,3 +48,13 @@ def get_encoding(pizzas):
     print('encoding success')
 
     return encoding
+
+def get_distance_2(nr_dict, pizzas):
+    dists = np.zeros((len(pizzas), len(pizzas)), dtype=np.int32)
+    for i, (n1, ings1) in enumerate(pizzas):
+        print(f"i: {i}")
+        for j, (n2, ings2) in enumerate(pizzas[i:]):
+            #n_unique = len(set(list(ings1) + list(ings2)))
+            n_unique = len(ings1 | ings2)
+            dists[i, j] = dists[j, i] = n_unique
+    return dists
