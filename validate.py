@@ -1,10 +1,11 @@
 
-def validate(input, deliveries):
+def validate(input, deliveries, pizzas):
     """
     This piece of code validates the solution and also returns the score
     of the current solution. If it does not meet the requirements the
     score will be -1.
         deliveries: a list of tuples: (number of people, list of pizza ids)
+        pizzas: a dictionary of pizza ids and and a list of its ingredients
     """
     # At least one of every pizza should be delivered.
     pizzas_delivered = set()
@@ -29,12 +30,11 @@ def validate(input, deliveries):
     # the delivery score is the square of the total number of different ingredients of
     # all the pizzas in the delivery. The total score is the sum of the scores for all deliveries.
     score = 0
+    
     for delivery in deliveries:
-        
-        
+        ingredient_set = set()
+        for pizza in delivery[1]:
+            ingredient_set |= set(pizzas[pizza])
+        score += len(ingredient_set) ** 2
 
-    return 
-
-
-if __main__():
-    validate()
+    return score

@@ -4,15 +4,18 @@ import output
 
 
 INPUT_DIR = "inputs"
+OUTPUT_DIR = "outputs"
 
 DATASET = "a_sample"
 DATASET_FILE = f"{INPUT_DIR}/{DATASET}"
 
+OUTPUT_FILE = f"{OUTPUT_DIR}/output_{DATASET}"
+
 
 def run():
-    num_pizzas, num_teams_2, num_teams_3, num_teams_4, pizzas = input.get_inputs(DATASET_FILE)
-    deliveries = solver.solve(num_pizzas, num_teams_2, num_teams_3, num_teams_4, pizzas)
-    output.create_output_file("sample", deliveries)
+    nr_dict, pizzas = input.read_input(DATASET_FILE)
+    deliveries = solver.solve(nr_dict, pizzas)
+    output.create_output_file(OUTPUT_FILE, deliveries)
 
 
 if __name__ == "__main__":

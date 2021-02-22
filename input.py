@@ -1,17 +1,13 @@
 from pathlib import Path
 
-def read_input(filename, dir="inputs"):
-
-    input_dir = Path(dir)
-
-    with open(input_dir / filename, 'r') as f:
+def read_input(filepath):
+    with open(filepath, 'r') as f:
         nr_pizzas, nr_t2, nr_t3, nr_t4 = map(int, f.readline().strip().split(' '))
         nr_dict = {
             'pizzas': nr_pizzas,
             't2': nr_t2,
             't3': nr_t3,
             't4': nr_t4,
-
         }
 
         pizzas = []
